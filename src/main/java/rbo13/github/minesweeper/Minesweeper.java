@@ -4,6 +4,7 @@ import rbo13.github.minesweeper.game.Game;
 import rbo13.github.minesweeper.game.GameHandler;
 import rbo13.github.minesweeper.game.Minefield;
 import rbo13.github.minesweeper.game.UI;
+import rbo13.github.minesweeper.util.Position;
 
 public class Minesweeper implements Game {
 
@@ -26,5 +27,26 @@ public class Minesweeper implements Game {
     @Override
     public void play() {
         ui.displayWelcomeMessage();
+        while(!isGameOver() && !isGameWon()) {
+            ui.displayGrid(false);
+            Position position = ui.getNextMove();
+            gameHandler.revealCell(position);
+
+            if (gameHandler.isGameOver()) {
+                ui.displayGameOverMessage();
+                ui.displayGrid(true);
+            } else if (gameHandler.isGameWon()) {
+                ui.displayWinMessage();
+                ui.displayGrid(true);
+            }
+        }
+    }
+
+    private boolean isGameOver() {
+        return gameHandler.isGameOver();
+    }
+
+    private boolean isGameWon() {
+        return gameHandler.isGameWon();
     }
 }

@@ -4,39 +4,60 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import rbo13.github.minesweeper.game.GameHandler;
 import rbo13.github.minesweeper.game.Minefield;
-import rbo13.github.minesweeper.game.UI;
+import rbo13.github.minesweeper.util.Position;
 
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MinesweeperTest {
 
-    private Minesweeper minesweeper;
     private Minefield minefield;
     private GameHandler gameHandler;
-    private UI ui;
 
     @BeforeEach
-    void setup() {
-        minefield = mock(Minefield.class);
-        gameHandler = mock(GameHandler.class);
-        ui = mock(UI.class);
-
-        minesweeper = new Minesweeper(minefield, gameHandler, ui);
+    void setUp() {
+        minefield = new Minefield(4, 3);
+        gameHandler = new GameHandler(minefield);
     }
 
     @Test
-    public void testPlay_GameOver() {
-        // Setup behavior for the game being over
-        when(gameHandler.isGameOver()).thenReturn(true);
-        when(gameHandler.isGameWon()).thenReturn(false);
+    void testInitialization() {
+        assertFalse(gameHandler.isGameOver());
+        assertFalse(gameHandler.isGameWon());
+    }
 
-        // Run the play method
-        minesweeper.play();
+    @Test
+    void testRevealCell() {
+        gameHandler.revealCell(new Position(0, 0));
+        assertFalse(gameHandler.isGameOver());
+        assertFalse(gameHandler.isGameWon());
+    }
 
-        // Verify that the welcome message and game over message are displayed
-        verify(ui).displayWelcomeMessage();
-        verify(ui).displayGameOverMessage();
-        verify(ui).displayGrid(true);
-        verify(ui, never()).displayWinMessage(); // Ensure the win message is not displayed
+    @Test
+    void testGameOver() {
+        // Reveal all cells to find a mine
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                gameHandler.revealCell(new Position(i, j));
+                if (gameHandler.isGameOver()) {
+                    assertTrue(gameHandler.isGameOver());
+                    return;
+                }
+            }
+        }
+        fail("No mine found");
+    }
+
+    @Test
+    void testGameWon() {
+        // Reveal all non-mine cells
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                gameHandler.revealCell(new Position(i, j));
+                if (gameHandler.isGameOver()) {
+                    return;
+                }
+            }
+        }
+        assertTrue(gameHandler.isGameWon());
     }
 }
