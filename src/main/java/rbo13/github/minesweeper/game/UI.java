@@ -40,7 +40,7 @@ public class UI {
 
     public void displayGrid(boolean revealAll) {
         if (minefieldUpdated) {
-            System.out.println("Here is your updated minefield:");
+            System.out.println("\nHere is your updated minefield:");
         }
 
         System.out.print("  ");
