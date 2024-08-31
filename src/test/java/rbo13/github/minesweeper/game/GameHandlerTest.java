@@ -7,6 +7,7 @@ import rbo13.github.minesweeper.util.Cell;
 import rbo13.github.minesweeper.util.Position;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -34,5 +35,20 @@ public class GameHandlerTest {
         gameHandler.revealCell(position);
         verify(cell).setRevealed(true);
         assertFalse(gameHandler.isGameOver());
+    }
+
+    @Test
+    void testRevealCell_RevealCellAndGameOverOnMine() {
+        Position position = new Position(2, 2);
+        Cell cell = Mockito.mock(Cell.class);
+
+        when(minefield.isValidPosition(2, 2)).thenReturn(true);
+        when(minefield.getCell(2, 2)).thenReturn(cell);
+        when(cell.isRevealed()).thenReturn(false);
+        when(cell.isMine()).thenReturn(true);
+
+        gameHandler.revealCell(position);
+
+        assertTrue(gameHandler.isGameOver());
     }
 }
