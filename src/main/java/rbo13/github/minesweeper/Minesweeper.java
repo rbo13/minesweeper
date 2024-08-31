@@ -25,6 +25,6 @@ public class Minesweeper implements Game {
 
     @Override
     public void play() {
-
+        ui.displayWelcomeMessage();
     }
 }
