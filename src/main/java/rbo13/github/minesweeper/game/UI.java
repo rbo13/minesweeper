@@ -1,6 +1,7 @@
 package rbo13.github.minesweeper.game;
 
 import rbo13.github.minesweeper.util.Cell;
+import rbo13.github.minesweeper.util.Position;
 
 import java.util.Scanner;
 
@@ -59,5 +60,38 @@ public class UI {
             }
             System.out.println();
         }
+    }
+
+    public Position getNextMove() {
+        System.out.print("Select a square to reveal (e.g. A1): ");
+        String input = scanner.next().toUpperCase();
+        int row = input.charAt(0) - 'A';
+        int col = input.charAt(1) - '1';
+        return new Position(row, col);
+    }
+
+    public void displayGameOverMessage() {
+        System.out.println("Oh no, you detonated a mine! Game over.");
+    }
+
+    public void displayWinMessage() {
+        System.out.println("Congratulations, you have won the game!");
+    }
+
+    public static GameSetup getGameSetup() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the size of the grid (e.g. 4 for a 4x4 grid): ");
+        int gridSize = scanner.nextInt();
+
+        int maxMines = (int) (gridSize * gridSize * MAX_MINE_PERCENTAGE);
+        System.out.print("Enter the number of mines to place on the grid (maximum is " + maxMines + "): ");
+        int totalMines = scanner.nextInt();
+
+        if (totalMines > maxMines) {
+            System.out.println("Too many mines! Setting to maximum allowed: " + maxMines);
+            totalMines = maxMines;
+        }
+
+        return new GameSetup(gridSize, totalMines);
     }
 }
