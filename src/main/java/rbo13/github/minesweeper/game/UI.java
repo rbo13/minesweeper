@@ -11,4 +11,6 @@ public class UI {
         this.minefield = minefield;
         this.scanner = new Scanner(System.in);
     }
+
+    public void displayWelcomeMessage() { System.out.println("Welcome to Minesweeper!"); }
 }
