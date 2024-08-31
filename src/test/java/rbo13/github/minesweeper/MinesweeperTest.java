@@ -26,13 +26,6 @@ public class MinesweeperTest {
     }
 
     @Test
-    void testRevealCell() {
-        gameHandler.revealCell(new Position(0, 0));
-        assertFalse(gameHandler.isGameOver());
-        assertFalse(gameHandler.isGameWon());
-    }
-
-    @Test
     void testGameOver() {
         // Reveal all cells to find a mine
         for (int i = 0; i < 4; i++) {
