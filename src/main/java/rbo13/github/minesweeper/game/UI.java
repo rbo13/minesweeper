@@ -29,6 +29,7 @@ public class UI {
     private final Scanner scanner;
     private static final String MINE = "X ";
     private static final double MAX_MINE_PERCENTAGE = 0.35;
+    private boolean minefieldUpdated = false;
 
     public UI(Minefield minefield) {
         this.minefield = minefield;
@@ -38,6 +39,10 @@ public class UI {
     public void displayWelcomeMessage() { System.out.println("Welcome to Minesweeper!"); }
 
     public void displayGrid(boolean revealAll) {
+        if (minefieldUpdated) {
+            System.out.println("Here is your updated minefield:");
+        }
+
         System.out.print("  ");
         for (int i = 0; i < minefield.getSize(); i++) {
             System.out.print((i + 1) + " ");
@@ -67,7 +72,14 @@ public class UI {
         String input = scanner.next().toUpperCase();
         int row = input.charAt(0) - 'A';
         int col = input.charAt(1) - '1';
-        return new Position(row, col);
+        Position selectedPosition = new Position(row, col);
+
+        Cell selectedSquare = minefield.getCell(selectedPosition.row(), selectedPosition.col());
+        if (!selectedSquare.isMine()) {
+            System.out.println("This square contains " + selectedSquare.getAdjacentMines() + " adjacent mines.");
+        }
+        minefieldUpdated = true;
+        return selectedPosition;
     }
 
     public void displayGameOverMessage() {
