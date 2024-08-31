@@ -4,11 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import rbo13.github.minesweeper.util.Cell;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -31,5 +33,19 @@ public class UITest {
     void testDisplayWelcomeMessage() {
         ui.displayWelcomeMessage();
         assertEquals("Welcome to Minesweeper!\r\n", outputStream.toString());
+    }
+
+    @Test
+    void testDiplayGrid() {
+        when(minefield.getCell(anyInt(), anyInt())).thenReturn(mock(Cell.class));
+        ui.displayGrid(false);
+        String expected = """
+                  1 2 3 4\s
+                A * * * *\s
+                B * * * *\s
+                C * * * *\s
+                D * * * *\s
+                """;
+        assertEquals(expected, outputStream.toString());
     }
 }
