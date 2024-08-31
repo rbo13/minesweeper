@@ -9,7 +9,11 @@ class CellTest {
 
     @Test
     void testCellInitialization() {
-        Cell cell = new Cell();
+        Cell cell = new Cell(
+                false,
+                false,
+                3
+        );
         assertNotNull(cell);
     }
 }

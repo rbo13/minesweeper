@@ -1,11 +1,5 @@
 package rbo13.github.minesweeper.util;
 
-public class Cell {
+public record Cell(boolean isMine, boolean isRevealed, int adjacentMines) {
 
-    private boolean isMine;
-    private boolean isRevealed;
-    private int adjacentMines;
-
-    public Cell() {
-    }
 }
