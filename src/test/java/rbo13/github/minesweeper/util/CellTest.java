@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class CellTest {
 
-
     @Test
     void testCellInitialization() {
         Cell cell = new Cell();
