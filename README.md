@@ -93,3 +93,7 @@ docker run -it minesweeper:latest
 ## Design Decisions
 
 For more information about the design decisions of this project, please refer to the [design.md](docs/design.md) document.
+
+
+## Video Recording
+<video src="docs/recording.mp4" width="320" height="240" controls></video>
