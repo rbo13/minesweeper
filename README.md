@@ -12,7 +12,7 @@ This implementation is built with Java and packaged using Maven.
 Ensure the following tools are installed on your system:
 
 - **Git**: For cloning the repository.
-- **Java/OpenJDK**: This project uses OpenJDK Runtime Environment Temurin-22.0.1+8 (build 22.0.1+8).
+- **Java/OpenJDK**: This project uses OpenJDK Runtime Environment Temurin-22.0.1+8 (build 22.0.1+8). Any OpenJDK should work, i.e Amazon Corretto.
 - **Maven**: For building and managing dependencies.
 
 ## Optional Requirements
@@ -58,10 +58,13 @@ mvnw.cmd clean test
 ### Building and Running the Application
 The application is packaged as a JAR file. Below are instructions for running it on different operating systems.
 
-#### Windows
+#### Windows using Command Prompt (cmd):
 1. Build the application:
 ```shell
 mvn clean install
+
+# or using the maven wrapper
+mvnw.cmd clean install
 ```
 2. Run the JAR file:
 ```shell
@@ -72,6 +75,9 @@ java -jar .\target\minesweeper-1.0.jar
 1. Build the application:
 ```shell
 mvn clean install
+
+# or using the maven wrapper
+./mvnw clean install
 ```
 2. Run the JAR file:
 ```shell
