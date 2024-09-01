@@ -6,6 +6,8 @@ import rbo13.github.minesweeper.game.Minefield;
 import rbo13.github.minesweeper.game.UI;
 import rbo13.github.minesweeper.util.Position;
 
+import java.util.Scanner;
+
 public class Minesweeper implements Game {
 
     private Minefield minefield;
@@ -26,6 +28,26 @@ public class Minesweeper implements Game {
 
     @Override
     public void play() {
+        Scanner scanner = new Scanner(System.in);
+        boolean playAgain;
+
+        do {
+            start();
+
+            System.out.println("Press any key to play again or 'n' to exit: ");
+            String response = scanner.nextLine();
+
+            playAgain = !response.equalsIgnoreCase("n");
+
+            if (playAgain) {
+                restartGame();
+            }
+        } while (playAgain);
+
+        System.out.println("Exiting game, thank you for playing!");
+    }
+
+    private void start() {
         ui.displayWelcomeMessage();
         while(!isGameOver() && !isGameWon()) {
             ui.displayGrid(false);
@@ -40,6 +62,12 @@ public class Minesweeper implements Game {
                 ui.displayGrid(true);
             }
         }
+    }
+
+    private void restartGame() {
+        this.minefield = new Minefield(minefield.getSize(), minefield.getTotalMines());
+        gameHandler.reset(minefield);
+        ui.refreshMinefield(minefield);
     }
 
     private boolean isGameOver() {

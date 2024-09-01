@@ -25,7 +25,7 @@ public class UI {
         }
     }
 
-    private final Minefield minefield;
+    private Minefield minefield;
     private final Scanner scanner;
     private static final String MINE = "X ";
     private static final double MAX_MINE_PERCENTAGE = 0.35;
@@ -88,6 +88,11 @@ public class UI {
 
     public void displayWinMessage() {
         System.out.println("Congratulations, you have won the game!");
+    }
+
+    public void refreshMinefield(Minefield minefield) {
+        this.minefield = minefield;
+        minefieldUpdated = false;
     }
 
     public static GameSetup getGameSetup() {

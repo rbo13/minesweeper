@@ -5,15 +5,9 @@ import rbo13.github.minesweeper.util.Position;
 
 public class GameHandler {
 
-    /*
-     * Minesweeper cell can have 8 adjacent
-     * cell direction: top, top-right,
-     * right, bottom-right, bottom,
-     * bottom-left, left, and top-left.
-     */
     private static final int MAX_DIRECTION_MOVEMENT = 8;
 
-    private final Minefield minefield;
+    private Minefield minefield;
     private boolean gameOver;
     private int revealedCells;
 
@@ -51,5 +45,11 @@ public class GameHandler {
 
     public boolean isGameWon() {
         return revealedCells == (minefield.getSize() * minefield.getSize() - minefield.getTotalMines());
+    }
+
+    public void reset(Minefield newMinefield) {
+        this.minefield = newMinefield;
+        this.gameOver = false;
+        this.revealedCells = 0;
     }
 }
