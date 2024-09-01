@@ -96,4 +96,4 @@ For more information about the design decisions of this project, please refer to
 
 
 ## Video Recording
-<video src="docs/recording.mp4" width="320" height="240" controls></video>
+![Recording](docs/recording_gif.gif)
