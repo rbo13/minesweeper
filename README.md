@@ -44,7 +44,7 @@ If Maven is not installed, use the provided Maven wrapper:
 ```shell
 ./mvnw clean test
 
-# or if an error occurred that says permission denied: ./mvnw
+# if an error occurred that says permission denied: ./mvnw
 chmod +x ./mvnw
 ```
 or, if on Windows:
@@ -58,21 +58,33 @@ The application is packaged as a JAR file. Below are instructions for running it
 #### Windows
 1. Build the application:
 ```shell
-mvn clean package
+mvn clean install
 ```
 2. Run the JAR file:
 ```shell
-java -jar .\target\minesweeper-1.0-SNAPSHOT.jar
+java -jar .\target\minesweeper-1.0.jar
 ```
 
 #### MacOS or Linux (via WSL2):
 1. Build the application:
 ```shell
-mvn clean package
+mvn clean install
 ```
 2. Run the JAR file:
 ```shell
-java -jar target/minesweeper-1.0-SNAPSHOT.jar
+java -jar target/minesweeper-1.0.jar
+```
+
+# Using Docker:
+
+### Building the app
+```docker
+docker build -t minesweeper .
+```
+
+### Running the app
+```docker
+docker run -it minesweeper:latest
 ```
 
 ## Design Decisions
