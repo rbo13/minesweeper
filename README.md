@@ -43,10 +43,13 @@ mvn clean test
 If Maven is not installed, use the provided Maven wrapper:
 ```shell
 ./mvnw clean test
+
+# or if an error occurred that says permission denied: ./mvnw
+chmod +x ./mvnw
 ```
 or, if on Windows:
 ```shell
-.\mvnw clean test
+.\mvnw.cmd clean test
 ```
 
 ### Building and Running the Application
