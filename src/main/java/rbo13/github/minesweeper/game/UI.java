@@ -75,6 +75,11 @@ public class UI {
         Position selectedPosition = new Position(row, col);
 
         Cell selectedSquare = minefield.getCell(selectedPosition.row(), selectedPosition.col());
+        if (selectedSquare == null) {
+            System.err.println("Current position is invalid: " +selectedPosition);
+            return selectedPosition;
+        }
+
         if (!selectedSquare.isMine()) {
             System.out.println("This square contains " + selectedSquare.getAdjacentMines() + " adjacent mines.");
         }

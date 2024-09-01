@@ -18,20 +18,24 @@ public class GameHandler {
     }
 
     public void revealCell(Position position) {
+        Cell currentCell = minefield.getCell(position.row(), position.col());
+        if (currentCell == null) {
+            return;
+        }
+
         if (!minefield.isValidPosition(position.row(), position.col()) || minefield.getCell(position.row(), position.col()).isRevealed()) {
             return;
         }
 
-        Cell cell = minefield.getCell(position.row(), position.col());
-        cell.setRevealed(true);
+        currentCell.setRevealed(true);
         revealedCells++;
 
-        if (cell.isMine()) {
+        if (currentCell.isMine()) {
             gameOver = true;
             return;
         }
 
-        if (cell.getAdjacentMines() == 0) {
+        if (currentCell.getAdjacentMines() == 0) {
             int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
             int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
 

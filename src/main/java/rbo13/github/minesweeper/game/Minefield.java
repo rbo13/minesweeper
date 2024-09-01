@@ -73,6 +73,9 @@ public class Minefield {
     }
 
     public Cell getCell(int row, int col) {
+        if (!isValidPosition(row, col)) {
+            return null;
+        }
         return board[row][col];
     }
 
