@@ -17,6 +17,8 @@
 1. Game Flow and Control:
    * The `play()` method in the Minesweeper class handles the main game loop, where it repeatedly displays the grid, gets the next move, and processes the result until the game is over or won.
    * The game should prompt the user to play again or exit after a win or loss. This mechanism involves resetting the game state without restarting the program.
+   
 2. Error Handling:
    * Invalid moves, `GameHandler` and `UI` classes handle invalid moves.
    * User inputs, user cannot input number of mines greater than 35% of the grid.
+   * No maximum grid size, but has a minimum grid size of 3.

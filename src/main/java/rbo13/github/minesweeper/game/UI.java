@@ -29,6 +29,8 @@ public class UI {
     private final Scanner scanner;
     private static final String MINE = "X ";
     private static final double MAX_MINE_PERCENTAGE = 0.35;
+    private static final int MINIMUM_MINES = 1;
+    private static final int MINIMUM_GRID_SIZE = 3;
     private boolean minefieldUpdated = false;
 
     public UI(Minefield minefield) {
@@ -105,12 +107,17 @@ public class UI {
         System.out.print("Enter the size of the grid (e.g. 4 for a 4x4 grid): ");
         int gridSize = scanner.nextInt();
 
+        if (gridSize < MINIMUM_GRID_SIZE) {
+            System.out.println("Invalid grid size. Defaulting to minimum: " + MINIMUM_GRID_SIZE);
+            gridSize = MINIMUM_GRID_SIZE;
+        }
+
         int maxMines = (int) (gridSize * gridSize * MAX_MINE_PERCENTAGE);
         System.out.print("Enter the number of mines to place on the grid (maximum is " + maxMines + "): ");
         int totalMines = scanner.nextInt();
 
-        if (totalMines > maxMines) {
-            System.out.println("Too many mines! Setting to maximum allowed: " + maxMines);
+        if (totalMines > maxMines || totalMines < MINIMUM_MINES) {
+            System.out.println("Invalid number of mines. Setting to maximum allowed: " + maxMines);
             totalMines = maxMines;
         }
 
