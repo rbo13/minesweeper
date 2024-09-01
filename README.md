@@ -50,9 +50,9 @@ chmod +x ./mvnw
 # run the command again
 ./mvnw clean test
 ```
-or, if on Windows:
+or, if on Windows using Command Prompt (cmd):
 ```shell
-.\mvnw.cmd clean test
+mvnw.cmd clean test
 ```
 
 ### Building and Running the Application
