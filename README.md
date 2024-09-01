@@ -46,6 +46,9 @@ If Maven is not installed, use the provided Maven wrapper:
 
 # if an error occurred that says permission denied: ./mvnw
 chmod +x ./mvnw
+
+# run the command again
+./mvnw clean test
 ```
 or, if on Windows:
 ```shell
